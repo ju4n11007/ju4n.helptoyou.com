@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ju4n Tech - Apasionado por la Informática</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset y variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #0ea5e9;
+            --accent-color: #f43f5e;
+            --light-color: #f8fafc;
+            --dark-color: #0f172a;
+            --gray-color: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            --gradient: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+        }
+        
+        body {
+            line-height: 1.7;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-size: 3.2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            color: var(--primary-color);
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--gradient);
+            border-radius: 10px;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+        
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: #475569;
+        }
+        
+        .highlight {
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+        
+        /* Botones */
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+            z-index: -1;
+            transition: var(--transition);
+            opacity: 0;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(14, 165, 233, 0.3);
+        }
+        
+        .btn:hover::after {
+            opacity: 1;
+        }
+        
+        .btn-accent {
+            background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
+        }
+        
+        .btn-accent:hover {
+            box-shadow: 0 15px 30px rgba(244, 63, 94, 0.3);
+        }
+        
+        /* Animaciones */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 5px 20px rgba(14, 165, 233, 0.2);
+            }
+            50% {
+                box-shadow: 0 5px 30px rgba(14, 165, 233, 0.4);
+            }
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            animation: fadeInLeft 0.8s ease-out;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+            margin-left: 5px;
+        }
+        
+        .logo .tech {
+            font-size: 0.9rem;
+            background: var(--gradient);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 40px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-btn:hover {
+            color: var(--secondary-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 180px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f8fafc 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') no-repeat center/cover;
+            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+            opacity: 0.9;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-text h1 {
+            margin-bottom: 30px;
+            animation-delay: 0.2s;
+        }
+        
+        .hero-text p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        
+        .hero-text .intro {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .os-icons {
+            display: flex;
+            gap: 25px;
+            margin: 40px 0;
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+        
+        .os-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary-color);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .os-icon:hover {
+            transform: translateY(-10px);
+            color: var(--secondary-color);
+        }
+        
+        .windows { color: #0078d7; }
+        .apple { color: #000000; }
+        .linux { color: #f1502f; }
+        
+        .contact-info {
+            margin-top: 40px;
+            padding: 25px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            animation: fadeInUp 1s ease-out 1s both;
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+        
+        .contact-info i {
+            color: var(--secondary-color);
+            margin-right: 12px;
+            width: 20px;
+        }
+        
+        /* Sección Sobre Mí */
+        .about {
+            background-color: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+        
+        .about-text p {
+            margin-bottom: 25px;
+        }
+        
+        .about-image {
+            position: relative;
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .badge {
+            position: absolute;
+            top: 20px;
+            right: -20px;
+            background: var(--gradient);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-weight: 700;
+            box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+            transform: rotate(5deg);
+            animation: pulse 2s infinite;
+        }
+        
+        /* Sección Servicios */
+        .services {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 45px 35px;
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient);
+            z-index: 2;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+            color: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.2);
+        }
+        
+        .service-card h3 {
+            margin-bottom: 20px;
+        }
+        
+        /* Sección OS Especialidades */
+        .os-specialties {
+            background-color: white;
+        }
+        
+        .os-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        
+        .os-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .os-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .os-header {
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .windows-header { background: linear-gradient(135deg, #0078d7 0%, #005a9e 100%); }
+        .macos-header { background: linear-gradient(135deg, #000000 0%, #333333 100%); }
+        .linux-header { background: linear-gradient(135deg, #f1502f 0%, #d14022 100%); }
+        
+        .os-header i {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .os-content {
+            padding: 30px;
+        }
+        
+        .os-content ul {
+            list-style: none;
+        }
+        
+        .os-content li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .os-content li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        /* Sección Tips */
+        .tips {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+        
+        .tip-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tip-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .tip-card h3 {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .tip-icon {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-right: 15px;
+            width: 50px;
+            height: 50px;
+            background: rgba(244, 63, 94, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .tip-tag {
+            display: inline-block;
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--secondary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 20px;
+        }
+        
+        /* Sección Contacto */
+        .contact {
+            background-color: white;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+        
+        .contact-form {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: 30px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: white;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
+        }
+        
+        .contact-details {
+            padding: 20px 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+        
+        .social-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+        
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        
+        .whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+        
+        .instagram {
+            background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #F56040 100%);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 0 40px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-bottom: 25px;
+            color: white;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary-color);
+        }
+        
+        .footer-about p {
+            color: #cbd5e1;
+        }
+        
+        .footer-links h3,
+        .footer-social h3 {
+            color: white;
+            margin-bottom: 30px;
+            font-size: 1.4rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+        
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-block;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            transform: translateX(5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            font-size: 1rem;
+        }
+        
+        .made-by {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero::before {
+                width: 45%;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.6rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero::before {
+                width: 50%;
+                opacity: 0.8;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .os-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: white;
+                text-align: center;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+                padding: 40px 0;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 20px 0;
+            }
+            
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+            
+            .hero::before {
+                display: none;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .hero {
+                padding-top: 150px;
+            }
+            
+            .os-icons {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .hero {
+                padding-top: 130px;
+            }
+            
+            .contact-form {
+                padding: 30px 20px;
+            }
+            
+            .btn {
+                padding: 14px 30px;
+                font-size: 1rem;
+            }
+            
+            .service-card, .tip-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Ju<span>4</span>n<div class="tech">TECH</div></a>
+                
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre-mi">Sobre Mí</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#sistemas">Sistemas</a></li>
+                    <li><a href="#tips">Tips</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero / Inicio -->
+    <section id="inicio" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Apasionado por la Informática</h1>
+                    <p class="intro">Hola, soy Ju4n. Un entusiasta de la tecnología con años de experiencia ayudando a personas a resolver sus problemas informáticos y optimizar sus sistemas.</p>
+                    <p>Esta página web está <span class="highlight">100% creada y programada por mí desde cero</span>, demostrando mi pasión tanto por el desarrollo web como por la asistencia técnica.</p>
+                    
+                    <div class="os-icons">
+                        <div class="os-icon windows">
+                            <i class="fab fa-windows"></i>
+                        </div>
+                        <div class="os-icon apple">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <div class="os-icon linux">
+                            <i class="fab fa-linux"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <p><i class="fas fa-user"></i> <strong>Nombre:</strong> Juan (Ju4n)</p>
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Ubicación:</strong> Chile</p>
+                        <p><i class="fas fa-laptop-code"></i> <strong>Especialidades:</strong> Windows, macOS, Linux</p>
+                        <p><i class="fas fa-book"></i> <strong>Actividad:</strong> Escritor de libros sobre software y tecnología</p>
+                    </div>
+                    
+                    <a href="#contacto" class="btn">Contactar Ahora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Mí -->
+    <section id="sobre-mi" class="about">
+        <div class="container">
+            <h2>Sobre Mí</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Soy un apasionado aficionado de la informática con años de experiencia explorando, aprendiendo y ayudando a otros en el mundo de la tecnología. Mi curiosidad me ha llevado a dominar múltiples sistemas operativos y a escribir sobre ellos.</p>
+                    <p>Además de brindar asistencia técnica, me dedico a escribir libros educativos sobre software, compartiendo conocimientos de forma accesible para todos los niveles de experiencia.</p>
+                    <p>Creo firmemente que la tecnología debe ser accesible para todos, y mi misión es eliminar las barreras entre los usuarios y sus dispositivos.</p>
+                    <p>Esta página web es un ejemplo de mi trabajo: <span class="highlight">diseñada, programada y desarrollada completamente por mí</span>, sin plantillas ni constructores, demostrando mis habilidades tanto en desarrollo web como en tecnología en general.</p>
+                    
+                    <a href="#contacto" class="btn btn-accent" style="margin-top: 30px;">Trabajemos Juntos</a>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tecnología y código">
+                    <div class="badge">100% Código Propio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section id="servicios" class="services">
+        <div class="container">
+            <h2>Servicios que Ofrezco</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-medical"></i>
+                    </div>
+                    <h3>Diagnóstico y Reparación</h3>
+                    <p>Identificación y solución de problemas de software en Windows, macOS y Linux. Desde errores de sistema hasta conflictos de aplicaciones.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Optimización de Sistemas</h3>
+                    <p>Aceleración de equipos lentos, limpieza de archivos innecesarios, gestión de inicio y mejora del rendimiento general del sistema.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>Asesoría Educativa</h3>
+                    <p>Guías personalizadas, tutoriales y recomendaciones basadas en mi experiencia como escritor de libros sobre software y tecnología.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sistemas Operativos -->
+    <section id="sistemas" class="os-specialties">
+        <div class="container">
+            <h2>Sistemas que Manejo</h2>
+            
+            <div class="os-grid">
+                <div class="os-card">
+                    <div class="os-header windows-header">
+                        <i class="fab fa-windows"></i>
+                        <h3>Windows</h3>
+                    </div>
+                    <div class="os-content">
+                        <p>Soporte completo para todas las versiones modernas de Windows:</p>
+                        <ul>
+                            <li>Instalación y configuración</li>
+                            <li>Resolución de errores BSOD</li>
+                            <li>Optimización de rendimiento</li>
+                            <li>Migración de datos</li>
+                            <li>Seguridad y antivirus</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="os-card">
+                    <div class="os-header macos-header">
+                        <i class="fab fa-apple"></i>
+                        <h3>macOS</h3>
+                    </div>
+                    <div class="os-content">
+                        <p>Asistencia especializada para el ecosistema Apple:</p>
+                        <ul>
+                            <li>Soporte para macOS y aplicaciones</li>
+                            <li>Integración con dispositivos Apple</li>
+                            <li>Recuperación de datos</li>
+                            <li>Configuración de Time Machine</li>
+                            <li>Optimización para creativos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="os-card">
+                    <div class="os-header linux-header">
+                        <i class="fab fa-linux"></i>
+                        <h3>Linux</h3>
+                    </div>
+                    <div class="os-content">
+                        <p>Ayuda con distribuciones Linux para todos los niveles:</p>
+                        <ul>
+                            <li>Selección de distribución adecuada</li>
+                            <li>Instalación y configuración</li>
+                            <li>Soporte de línea de comandos</li>
+                            <li>Resolución de problemas de drivers</li>
+                            <li>Personalización y automatización</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tips de Hardware -->
+    <section id="tips" class="tips">
+        <div class="container">
+            <h2>Tips de Hardware y Compra</h2>
+            
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h3><div class="tip-icon"><i class="fas fa-microchip"></i></div> Antes de Comprar</h3>
+                    <p>Investiga las especificaciones según tus necesidades reales. No pagues por potencia que no vas a utilizar. Para ofimática, un procesador de gama media con SSD es suficiente.</p>
+                    <div class="tip-tag">Consejo de Compra</div>
+                </div>
+                
+                <div class="tip-card">
+                    <h3><div class="tip-icon"><i class="fas fa-fan"></i></div> Mantenimiento Preventivo</h3>
+                    <p>Limpia el polvo interno de tu PC cada 6 meses. El sobrecalentamiento reduce la vida útil de los componentes y afecta el rendimiento. Usa aire comprimido con cuidado.</p>
+                    <div class="tip-tag">Cuidado de Hardware</div>
+                </div>
+                
+                <div class="tip-card">
+                    <h3><div class="tip-icon"><i class="fas fa-bolt"></i></div> Actualización Efectiva</h3>
+                    <p>Si tu equipo va lento, antes de cambiarlo, considera: 1) Agregar más RAM, 2) Cambiar HDD por SSD. Estas dos mejoras tienen el mayor impacto en rendimiento por costo.</p>
+                    <div class="tip-tag">Optimización</div>
+                </div>
+                
+                <div class="tip-card">
+                    <h3><div class="tip-icon"><i class="fas fa-shopping-cart"></i></div> Mejor Momento para Comprar</h3>
+                    <p>Los mejores precios para componentes suelen ser en eventos como Black Friday, Cyber Monday y temporadas de lanzamiento de nuevos productos (cuando bajan los anteriores).</p>
+                    <div class="tip-tag">Consejo de Compra</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contacto -->
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2>Contacto</h2>
+            
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" required placeholder="Tu nombre">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" required placeholder="tu@email.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="system">Sistema Operativo</label>
+                            <select id="system">
+                                <option value="windows">Windows</option>
+                                <option value="macos">macOS</option>
+                                <option value="linux">Linux</option>
+                                <option value="varios">Varios / No estoy seguro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Descripción del Problema o Consulta</label>
+                            <textarea id="message" rows="6" required placeholder="Describe tu problema o consulta en detalle..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-accent">Enviar Consulta</button>
+                    </form>
+                </div>
+                
+                <div class="contact-details">
+                    <h3>Contacto Directo</h3>
+                    <p>Para una respuesta más rápida, puedes contactarme directamente por WhatsApp o Instagram:</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>+56 9 8369 3215</p>
+                            <small>Respuesta en menos de 2 horas</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <div>
+                            <h4>Instagram</h4>
+                            <p>@ju4n_tech._</p>
+                            <small>Consejos diarios y novedades tecnológicas</small>
+                        </div>
+                    </div>
+                    
+                    <div class="social-buttons">
+                        <a href="https://wa.me/56983693215" target="_blank" class="social-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/ju4n_tech._/" target="_blank" class="social-btn instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Ju<span>4</span>n TECH</div>
+                    <p>Apasionado aficionado a la informática, especializado en asistencia técnica multiplataforma y escritor de libros sobre software.</p>
+                    <p><strong>Windows, macOS y Linux</strong></p>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#sobre-mi">Sobre Mí</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#sistemas">Sistemas Operativos</a></li>
+                        <li><a href="#tips">Tips de Hardware</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-social">
+                    <h3>Conéctate Conmigo</h3>
+                    <p>Sígueme para consejos diarios, novedades tecnológicas y contenido exclusivo:</p>
+                    <div class="social-buttons">
+                        <a href="https://wa.me/56983693215" target="_blank" class="social-btn whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://www.instagram.com/ju4n_tech._/" target="_blank" class="social-btn instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2026 Ju4nTECH.cl - Todos los derechos reservados.</p>
+                <div class="made-by">
+                    <i class="fas fa-code"></i> Página web 100% creada y programada por mí desde cero
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menú móvil
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Formulario de contacto
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Obtener valores del formulario
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const system = document.getElementById('system').value;
+            const message = document.getElementById('message').value;
+            
+            // Configurar mensaje de WhatsApp
+            const phoneNumber = "56983693215";
+            const whatsappMessage = `Hola Ju4n, soy ${name}. Necesito ayuda con un problema en ${system}. ${message}. Mi email es: ${email}`;
+            const encodedMessage = encodeURIComponent(whatsappMessage);
+            
+            // Mostrar mensaje de confirmación
+            alert(`¡Gracias ${name}! Tu consulta ha sido recibida. Para un contacto más directo, te redirigiré a WhatsApp.`);
+            
+            // Redirigir a WhatsApp
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+            
+            // Resetear formulario
+            contactForm.reset();
+        });
+        
+        // Scroll suave para enlaces internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animación al hacer scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos para animación
+        document.querySelectorAll('.service-card, .tip-card, .os-card, .contact-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+        
+        // Cambiar estilo del header al hacer scroll
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if(window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                header.style.padding = '0';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+            }
+            
+            // Animar elementos al hacer scroll
+            const scrollPosition = window.scrollY;
+            const heroContent = document.querySelector('.hero-text');
+            if(heroContent) {
+                heroContent.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+            }
+        });
+        
+        // Inicializar animaciones
+        window.addEventListener('load', () => {
+            document.body.style.opacity = '1';
+        });
+    </script>
+</body>
+</html>
